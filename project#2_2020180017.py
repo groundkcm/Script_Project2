@@ -1,8 +1,43 @@
 from tkinter import *
 from tkinter.ttk import *
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+import csv
+import re
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+# options = webdriver.ChromeOptions()
+# user_agent = {
+#     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
+# }
+# options.add_experimental_option('excludeSwitches', ['enable-automation'])
+# options.add_argument(f'user-agent={user_agent}')
+# browser = webdriver.Chrome(options=options)
+
+# url = 'https://flyasiana.com/I/KR/KO/RevenueRegistTravel.do'
+# browser.get(url)
+# browser.refresh()
+#
+#
+# keyword = '신라면'
+# url = f'https://search.naver.com/search.naver?where=image&sm=tab_jum&query={keyword}'
+#
+# browser = webdriver.Chrome()
+# browser.get(url)
+# browser.refresh()
+#
+# soup = BeautifulSoup(browser.page_source, features='lxml')
+# elms = soup.find_all(class_='_image _listImage')
+#
+# for i, e in enumerate(elms):
+#     caption = e['alt']
+#     image_url = e['data-lazy-src'] if e.has_attr('data-lazy-src') else e['src']
+#     print(f'No: {i:3}, Caption: {caption}, URL: {image_url}')
 
 
 def stop():
