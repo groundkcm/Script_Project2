@@ -20,10 +20,11 @@ untaken_namelist = []
 
 keyword = ''
 url = ''
+game = ''
 
-# options = webdriver.ChromeOptions()
-# options.add_experimental_option('excludeSwitches', ['enable-automation'])
-# options.add_argument(f'user-agent={user_agent}')
+options = webdriver.ChromeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-automation'])
+options.add_argument(f'user-agent={user_agent}')
 # browser = webdriver.Chrome(options=options)
 #
 # browser.get(url)
@@ -47,21 +48,25 @@ def stop():
 
 
 def select_game(event=None):
-    global url
-    text = Gameselect.get()
-    if text == '로스트아크':
+    global game
+    game = Gameselect.get()
+
+
+def seturl():
+    global game, url
+    if game == '로스트아크':
         url = f'https://lostark.game.onstove.com/Profile/Character/{keyword}'
-    elif text == '메이플스토리':
+    elif game == '메이플스토리':
         url = f'https://maple.gg/search?q={keyword}'
-    elif text == '마인크래프트':
+    elif game == '마인크래프트':
         url = f'https://ko.namemc.com/search?q={keyword}'
-    elif text == 'LoL':
+    elif game == 'LoL':
         url = f'https://www.op.gg/summoners/kr/{keyword}'
-    elif text == '배틀그라운드':
+    elif game == '배틀그라운드':
         url = f'https://pubg.op.gg/user/{keyword}'
-    elif text == '배틀필트':
+    elif game == '배틀필트':
         url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
-    elif text == '오버워치':
+    elif game == '오버워치':
         url = f'https://overwatch.op.gg/search/?playerName={keyword}'
 
 
@@ -80,7 +85,15 @@ def make_nickname():
 
 
 def find_untaken_nickname():
-    pass
+    global keyword
+
+    browser = webdriver.Chrome(options=options)
+    for name in namelist:
+        keyword = name
+        seturl()
+
+        browser.get(url)
+        browser.refresh()
 
 
 window = Tk()
@@ -145,16 +158,7 @@ def Main():
     # Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
     # Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
-
-    # menu = Menu()
-    #
-    # menu_File = Menu(menu, tearoff=False) # tearoff : menu 분리
-    # menu_File.add_command(label="Quit", accelerator='Ctrl+Q', command=stop)
-    # menu.add_cascade(label="Menu", underline=True, menu=menu_File)
-    #
-    #
     window.bind_all('<Control-q>', stop)
-    # window.config(menu=menu)
 
 
 def result(event=None):
@@ -181,7 +185,7 @@ def result(event=None):
 
     command1_frame = LabelFrame(text='Command')
     command1_frame.pack(fill=BOTH, padx=5, pady=5)
-    Button(command1_frame, command=make_nickname, text='Find Untaken Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command1_frame, command=find_untaken_nickname, text='Find Untaken Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
     window.bind_all('<Control-q>', stop)
 
