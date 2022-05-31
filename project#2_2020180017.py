@@ -45,14 +45,17 @@ def stop():
     window.quit()
 
 
-def select_item(event=None):
-    text = combobox.get()
+def select_game(event=None):
+    text = Gameselect.get()
     print(text, 'is selected')
 
 
-def enter_item(event=None):
-    text = combobox.get()
-    print(text, 'is entered')
+def select_nametype(event=None):
+    text = Gameselect.get()
+    print(text, 'is selected')
+# def enter_item(event=None):
+#     text = combobox.get()
+#     print(text, 'is entered')
 
 
 def make_nickname():
@@ -62,22 +65,28 @@ window = Tk()
 window.geometry("+100+100")
 window.resizable(False, False)
 window.bind('<Escape>', stop)
+
 # 제목
 label = Label(text="Name is already taken")
 label.pack()
+
 # 게임 선택
-combobox = Combobox(width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
-combobox.current()
-combobox.bind('<<ComboboxSelected>>', select_item)
-combobox.bind('<Return>', enter_item)
-combobox.pack()
+label = Label(text="게임 선택")
+label.pack(anchor="w", pady=10)
+Gameselect = Combobox(width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
+Gameselect.current()
+Gameselect.bind('<<ComboboxSelected>>', select_game)
+# Gameselect.bind('<Return>', enter_item)
+Gameselect.pack()
 
 # 테마 선택
-history_frame = LabelFrame(text='History')
+# label = Label(text="닉네임 컨셉 선택")
+# label.pack(anchor="w")
+history_frame = LabelFrame(text='닉네임 컨셉 선택')
 history_frame.pack(fill=X)
 history_listbox = Listbox(history_frame, selectmode='single', height=5)
-history_listbox.insert(0, 'Python')
-history_listbox.insert(1, '\d\d')
+history_listbox.insert(0, '개인정보')
+history_listbox.insert(1, '랜덤')
 history_listbox.insert(END, '[a-zA-z]+')
 history_listbox.pack(side=LEFT, fill=X, expand=True)
 history_listbox.bind('<<ListboxSelect>>', None)
@@ -87,11 +96,13 @@ history_listbox.configure(yscrollcommand=scrollbar.set)
 scrollbar.configure(command=history_listbox.yview)
 
 # 닉네임 조합 선택
-combobox = Combobox(width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
-combobox.current()
-combobox.bind('<<ComboboxSelected>>', select_item)
-combobox.bind('<Return>', enter_item)
-combobox.pack()
+label = Label(text="닉네임 구성 선택")
+label.pack(anchor="w")
+nametype = Combobox(width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
+nametype.current()
+nametype.bind('<<ComboboxSelected>>', select_nametype)
+# nametype.bind('<Return>', enter_item)
+nametype.pack()
 
 
 command_frame = LabelFrame(text='Command')
