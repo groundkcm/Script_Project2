@@ -77,10 +77,8 @@ Gameselect.bind('<<ComboboxSelected>>', select_game)
 Gameselect.pack()
 
 # 테마 선택
-# label = Label(text="닉네임 컨셉 선택")
-# label.pack(anchor="w")
 history_frame = LabelFrame(text='닉네임 컨셉 선택')
-history_frame.pack(fill=X)
+history_frame.pack(fill=X, pady=10)
 history_listbox = Listbox(history_frame, selectmode='single', height=5)
 history_listbox.insert(0, '개인정보')
 history_listbox.insert(1, '랜덤')
@@ -94,7 +92,7 @@ scrollbar.configure(command=history_listbox.yview)
 
 # 닉네임 조합 선택
 label = Label(text="닉네임 구성 선택")
-label.pack(anchor="w")
+label.pack(anchor="w", pady=10)
 nametype = Combobox(width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
 nametype.current()
 nametype.bind('<<ComboboxSelected>>', select_nametype)
