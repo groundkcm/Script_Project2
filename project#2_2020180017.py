@@ -51,17 +51,32 @@ window.bind('<Escape>', stop)
 
 label = Label(text="Name is already taken")
 label.pack()
+
+history_frame = LabelFrame(text='History')
+history_frame.pack(fill=X)
+history_listbox = Listbox(history_frame, selectmode='single', height=5)
+history_listbox.insert(0, 'Python')
+history_listbox.insert(1, '\d\d')
+history_listbox.insert(END, '[a-zA-z]+')
+history_listbox.pack(side=LEFT, fill=X, expand=True)
+history_listbox.bind('<<ListboxSelect>>', None)
+scrollbar = Scrollbar(history_frame)
+scrollbar.pack(side=RIGHT, fill=Y)
+history_listbox.configure(yscrollcommand=scrollbar.set)
+scrollbar.configure(command=history_listbox.yview)
+
 command_frame = LabelFrame(text='Command')
 command_frame.pack(fill=BOTH, padx=5, pady=5)
-
 # Button(command_frame, command=make_lecture_folders, text='make lecture_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 # Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 # Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
 menu = Menu()
+
 menu_File = Menu(menu, tearoff=False) # tearoff : menu 분리
 menu_File.add_command(label="Quit", accelerator='Ctrl+Q', command=stop)
 menu.add_cascade(label="Menu", underline=True, menu=menu_File)
+
 menu_Colors = Menu(menu, tearoff=False)
 window.bind_all('<Control-q>', stop)
 window.config(menu=menu)

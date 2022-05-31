@@ -77,13 +77,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653919100048</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="tkinter 창 위치 조정">
+      <created>1653990231231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653990231231</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="rename" />
     <MESSAGE value="add tkinter" />
     <MESSAGE value="Web Scraping 준비" />
-    <option name="LAST_COMMIT_MESSAGE" value="Web Scraping 준비" />
+    <MESSAGE value="tkinter 창 위치 조정" />
+    <option name="LAST_COMMIT_MESSAGE" value="tkinter 창 위치 조정" />
   </component>
 </project>
