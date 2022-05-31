@@ -62,13 +62,10 @@ def make_nickname():
     pass
 
 window = Tk()
+window.title("Name is already taken")
 window.geometry("+100+100")
 window.resizable(False, False)
 window.bind('<Escape>', stop)
-
-# 제목
-label = Label(text="Name is already taken")
-label.pack()
 
 # 게임 선택
 label = Label(text="게임 선택")
