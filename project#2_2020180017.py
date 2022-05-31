@@ -18,6 +18,7 @@ user_agent = {
 
 keyword = ''
 lostark_url = f'https://lostark.game.onstove.com/Profile/Character/{keyword}'
+maple_url = f'https://maple.gg/search?q={keyword}'
 mincraft_url = f'https://ko.namemc.com/search?q={keyword}'
 lol_url = f'https://www.op.gg/summoners/kr/{keyword}'
 battleground_url = f'https://pubg.op.gg/user/{keyword}'
@@ -54,7 +55,7 @@ def select_game(event=None):
 
 
 def select_nametype(event=None):
-    text = Gameselect.get()
+    text = nametype.get()
     print(text, 'is selected')
 # def enter_item(event=None):
 #     text = combobox.get()
@@ -63,6 +64,7 @@ def select_nametype(event=None):
 
 def make_nickname():
     pass
+
 
 def find_untaken_nickname():
     pass
@@ -76,7 +78,7 @@ window.bind('<Escape>', stop)
 
 # 게임 선택
 label = Label(text="게임 선택")
-label.pack(anchor="w", pady=10)
+label.pack(anchor="w", pady=7)
 Gameselect = Combobox(width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
 Gameselect.current()
 Gameselect.bind('<<ComboboxSelected>>', select_game)
@@ -85,7 +87,7 @@ Gameselect.pack()
 
 # 테마 선택
 history_frame = LabelFrame(text='닉네임 컨셉 선택')
-history_frame.pack(fill=X, pady=10)
+history_frame.pack(fill=X, pady=7)
 history_listbox = Listbox(history_frame, selectmode='single', height=5)
 history_listbox.insert(0, '개인정보')
 history_listbox.insert(1, '랜덤')
@@ -97,9 +99,15 @@ scrollbar.pack(side=RIGHT, fill=Y)
 history_listbox.configure(yscrollcommand=scrollbar.set)
 scrollbar.configure(command=history_listbox.yview)
 
+# 필수 단어 입력
+label = Label(text="필수 단어 입력")
+label.pack(anchor="w", pady=7)
+word = Entry(window, width=50)
+word.pack()
+
 # 닉네임 조합 선택
 label = Label(text="닉네임 구성 선택")
-label.pack(anchor="w", pady=10)
+label.pack(anchor="w", pady=7)
 nametype = Combobox(width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
 nametype.current()
 nametype.bind('<<ComboboxSelected>>', select_nametype)
