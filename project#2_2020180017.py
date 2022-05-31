@@ -19,12 +19,7 @@ namelist = ['groundkcm', 'name1', 'name2']
 untaken_namelist = []
 
 keyword = ''
-lostark_url = f'https://lostark.game.onstove.com/Profile/Character/{keyword}'
-maple_url = f'https://maple.gg/search?q={keyword}'
-mincraft_url = f'https://ko.namemc.com/search?q={keyword}'
-lol_url = f'https://www.op.gg/summoners/kr/{keyword}'
-battleground_url = f'https://pubg.op.gg/user/{keyword}'
-battlefield_url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
+url = ''
 
 # options = webdriver.ChromeOptions()
 # options.add_experimental_option('excludeSwitches', ['enable-automation'])
@@ -52,16 +47,32 @@ def stop():
 
 
 def select_game(event=None):
+    global url
     text = Gameselect.get()
-    print(text, 'is selected')
+    if text == '로스트아크':
+        url = f'https://lostark.game.onstove.com/Profile/Character/{keyword}'
+    elif text == '메이플스토리':
+        url = f'https://maple.gg/search?q={keyword}'
+    elif text == '마인크래프트':
+        url = f'https://ko.namemc.com/search?q={keyword}'
+    elif text == 'LoL':
+        url = f'https://www.op.gg/summoners/kr/{keyword}'
+    elif text == '배틀그라운드':
+        url = f'https://pubg.op.gg/user/{keyword}'
+    elif text == '배틀필트':
+        url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
+    elif text == '오버워치':
+        url = f'https://overwatch.op.gg/search/?playerName={keyword}'
 
 
 def select_nametype(event=None):
     text = nametype.get()
     print(text, 'is selected')
-# def enter_item(event=None):
-#     text = combobox.get()
-#     print(text, 'is entered')
+
+
+def select_nameconcept(event=None):
+    text = main_listbox.curselection()
+    print(text, 'is entered')
 
 
 def make_nickname():
@@ -85,7 +96,7 @@ command1_frame = LabelFrame()
 
 
 def Main():
-    global Gameselect, nametype, word, main_frame, command_frame
+    global Gameselect, nametype, main_listbox, word, main_frame, command_frame
 
     result_frame.destroy()
     command1_frame.destroy()
@@ -96,7 +107,7 @@ def Main():
     # 게임 선택
     label = Label(main_frame, text="게임 선택")
     label.pack(anchor="w", pady=7)
-    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
+    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '메이플스토리', '마인크래프트'])
     Gameselect.current()
     Gameselect.bind('<<ComboboxSelected>>', select_game)
     # Gameselect.bind('<Return>', enter_item)
@@ -110,7 +121,7 @@ def Main():
     main_listbox.insert(1, '랜덤')
     main_listbox.insert(END, '기본단어')
     main_listbox.pack(fill=X, expand=True)
-    main_listbox.bind('<<ListboxSelect>>')
+    main_listbox.bind('<<ListboxSelect>>', select_nameconcept)
 
     # 필수 단어 입력
     label = Label(main_frame, text="필수 단어 입력")
