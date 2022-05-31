@@ -84,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653990231231</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="체크박스 추가">
+      <created>1653994422415</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653994422415</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -92,6 +99,7 @@
     <MESSAGE value="add tkinter" />
     <MESSAGE value="Web Scraping 준비" />
     <MESSAGE value="tkinter 창 위치 조정" />
-    <option name="LAST_COMMIT_MESSAGE" value="tkinter 창 위치 조정" />
+    <MESSAGE value="체크박스 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="체크박스 추가" />
   </component>
 </project>

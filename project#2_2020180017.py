@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
+import tkinter.messagebox as messagebox
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -52,6 +53,21 @@ window.bind('<Escape>', stop)
 label = Label(text="Name is already taken")
 label.pack()
 
+def select_item(event=None):
+    text = combobox.get()
+    print(text, 'is selected')
+
+def enter_item(event=None):
+    text = combobox.get()
+    print(text, 'is entered')
+
+combobox = Combobox(width=50, height=5, values=['abc','def', 'xyz'])
+combobox.current()
+combobox.bind('<<ComboboxSelected>>', select_item)
+combobox.bind('<Return>', enter_item)
+combobox.pack()
+print(combobox['values'])
+
 history_frame = LabelFrame(text='History')
 history_frame.pack(fill=X)
 history_listbox = Listbox(history_frame, selectmode='single', height=5)
@@ -77,7 +93,8 @@ menu_File = Menu(menu, tearoff=False) # tearoff : menu 분리
 menu_File.add_command(label="Quit", accelerator='Ctrl+Q', command=stop)
 menu.add_cascade(label="Menu", underline=True, menu=menu_File)
 
-menu_Colors = Menu(menu, tearoff=False)
+
+
 window.bind_all('<Control-q>', stop)
 window.config(menu=menu)
 
