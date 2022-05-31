@@ -45,29 +45,34 @@ def stop():
     window.quit()
 
 
-window = Tk()
-window.geometry("+100+100")
-window.resizable(False, False)
-window.bind('<Escape>', stop)
-
-label = Label(text="Name is already taken")
-label.pack()
-
 def select_item(event=None):
     text = combobox.get()
     print(text, 'is selected')
+
 
 def enter_item(event=None):
     text = combobox.get()
     print(text, 'is entered')
 
-combobox = Combobox(width=50, height=5, values=['abc','def', 'xyz'])
+
+def make_nickname():
+    pass
+
+window = Tk()
+window.geometry("+100+100")
+window.resizable(False, False)
+window.bind('<Escape>', stop)
+# 제목
+label = Label(text="Name is already taken")
+label.pack()
+# 게임 선택
+combobox = Combobox(width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
 combobox.current()
 combobox.bind('<<ComboboxSelected>>', select_item)
 combobox.bind('<Return>', enter_item)
 combobox.pack()
-print(combobox['values'])
 
+# 테마 선택
 history_frame = LabelFrame(text='History')
 history_frame.pack(fill=X)
 history_listbox = Listbox(history_frame, selectmode='single', height=5)
@@ -81,9 +86,17 @@ scrollbar.pack(side=RIGHT, fill=Y)
 history_listbox.configure(yscrollcommand=scrollbar.set)
 scrollbar.configure(command=history_listbox.yview)
 
+# 닉네임 조합 선택
+combobox = Combobox(width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
+combobox.current()
+combobox.bind('<<ComboboxSelected>>', select_item)
+combobox.bind('<Return>', enter_item)
+combobox.pack()
+
+
 command_frame = LabelFrame(text='Command')
 command_frame.pack(fill=BOTH, padx=5, pady=5)
-# Button(command_frame, command=make_lecture_folders, text='make lecture_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+Button(command_frame, command=make_nickname, text='Make Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 # Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 # Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
