@@ -77,10 +77,11 @@ window.title("Name is already taken")
 window.geometry("+100+100")
 window.resizable(False, False)
 window.bind('<Escape>', stop)
-main_frame = LabelFrame(text='닉네임 컨셉 선택')
-result_frame = LabelFrame(window)
-command_frame = LabelFrame(text='Command')
-command1_frame = LabelFrame(text='Command')
+
+main_frame = LabelFrame()
+result_frame = LabelFrame()
+command_frame = LabelFrame()
+command1_frame = LabelFrame()
 
 
 def Main():
@@ -161,7 +162,6 @@ def result(event=None):
         history_listbox.insert(n, namelist[n])
     history_listbox.insert(END, '기본단어')
     history_listbox.pack(side=LEFT, fill=X, expand=True)
-    history_listbox.bind('<<ListboxSelect>>')
 
     scrollbar = Scrollbar(result_frame)
     scrollbar.pack(side=RIGHT, fill=Y)
