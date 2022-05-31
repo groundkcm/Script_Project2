@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="닉네임 조합 조건 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +104,28 @@
       <option name="project" value="LOCAL" />
       <updated>1654002320951</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="조건 당 라벨추가">
+      <created>1654003904731</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654003904731</updated>
+    </task>
+    <task id="LOCAL-00009" summary="창 이름 변경">
+      <created>1654003972956</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654003972956</updated>
+    </task>
+    <task id="LOCAL-00010" summary="조건 사이 여백 추가">
+      <created>1654004134913</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654004134913</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -116,6 +136,9 @@
     <MESSAGE value="체크박스 추가" />
     <MESSAGE value="combobox 추가" />
     <MESSAGE value="닉네임 조합 조건 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="닉네임 조합 조건 추가" />
+    <MESSAGE value="조건 당 라벨추가" />
+    <MESSAGE value="창 이름 변경" />
+    <MESSAGE value="조건 사이 여백 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="조건 사이 여백 추가" />
   </component>
 </project>

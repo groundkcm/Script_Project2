@@ -9,24 +9,27 @@ import csv
 import re
 import logging
 
-# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+user_agent = {
+    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
+}
+
+
+keyword = ''
+lostark_url = f'https://lostark.game.onstove.com/Profile/Character/{keyword}'
+mincraft_url = f'https://ko.namemc.com/search?q={keyword}'
+lol_url = f'https://www.op.gg/summoners/kr/{keyword}'
+battleground_url = f'https://pubg.op.gg/user/{keyword}'
+battlefield_url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
 
 # options = webdriver.ChromeOptions()
-# user_agent = {
-#     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
-# }
 # options.add_experimental_option('excludeSwitches', ['enable-automation'])
 # options.add_argument(f'user-agent={user_agent}')
 # browser = webdriver.Chrome(options=options)
-
-# url = 'https://flyasiana.com/I/KR/KO/RevenueRegistTravel.do'
+#
 # browser.get(url)
 # browser.refresh()
-#
-#
-# keyword = '신라면'
-# url = f'https://search.naver.com/search.naver?where=image&sm=tab_jum&query={keyword}'
 #
 # browser = webdriver.Chrome()
 # browser.get(url)
@@ -60,6 +63,10 @@ def select_nametype(event=None):
 
 def make_nickname():
     pass
+
+def find_untaken_nickname():
+    pass
+
 
 window = Tk()
 window.title("Name is already taken")
@@ -111,7 +118,6 @@ menu = Menu()
 menu_File = Menu(menu, tearoff=False) # tearoff : menu 분리
 menu_File.add_command(label="Quit", accelerator='Ctrl+Q', command=stop)
 menu.add_cascade(label="Menu", underline=True, menu=menu_File)
-
 
 
 window.bind_all('<Control-q>', stop)
