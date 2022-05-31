@@ -63,7 +63,7 @@ def select_nametype(event=None):
 
 
 def make_nickname():
-    pass
+    word.get()
 
 
 def find_untaken_nickname():
@@ -88,12 +88,12 @@ Gameselect.pack()
 # 테마 선택
 history_frame = LabelFrame(text='닉네임 컨셉 선택')
 history_frame.pack(fill=X, pady=7)
-history_listbox = Listbox(history_frame, selectmode='single', height=5)
+history_listbox = Listbox(history_frame, selectmode='multiple', height=5)
 history_listbox.insert(0, '개인정보')
 history_listbox.insert(1, '랜덤')
-history_listbox.insert(END, '[a-zA-z]+')
+history_listbox.insert(END, '기본단어')
 history_listbox.pack(side=LEFT, fill=X, expand=True)
-history_listbox.bind('<<ListboxSelect>>', None)
+history_listbox.bind('<<ListboxSelect>>')
 scrollbar = Scrollbar(history_frame)
 scrollbar.pack(side=RIGHT, fill=Y)
 history_listbox.configure(yscrollcommand=scrollbar.set)
@@ -132,3 +132,12 @@ window.bind_all('<Control-q>', stop)
 window.config(menu=menu)
 
 window.mainloop()
+
+result = Tk()
+result.title("Name is already taken")
+result.geometry("+100+100")
+result.resizable(False, False)
+result.bind('<Escape>', stop)
+
+label = Label(text="결과")
+label.pack(anchor="w", pady=7)

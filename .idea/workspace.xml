@@ -133,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654004582638</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="필수 단어 입력 추가">
+      <created>1654005521768</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1654005521768</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,6 +155,7 @@
     <MESSAGE value="창 이름 변경" />
     <MESSAGE value="조건 사이 여백 추가" />
     <MESSAGE value="닉네임 검색 url 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="닉네임 검색 url 추가" />
+    <MESSAGE value="필수 단어 입력 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="필수 단어 입력 추가" />
   </component>
 </project>
