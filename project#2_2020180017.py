@@ -8,7 +8,7 @@ import csv
 import re
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 # options = webdriver.ChromeOptions()
@@ -45,11 +45,11 @@ def stop():
 
 
 window = Tk()
-window.geometry("+0+0")
+window.geometry("+100+100")
 window.resizable(False, False)
 window.bind('<Escape>', stop)
 
-label = Label(text="File Management")
+label = Label(text="Name is already taken")
 label.pack()
 command_frame = LabelFrame(text='Command')
 command_frame.pack(fill=BOTH, padx=5, pady=5)
