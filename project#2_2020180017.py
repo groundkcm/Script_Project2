@@ -15,7 +15,7 @@ user_agent = {
     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
 }
 
-namelist = []
+namelist = ['groundkcm', 'name1', 'name2']
 untaken_namelist = []
 
 keyword = ''
@@ -77,54 +77,50 @@ window.title("Name is already taken")
 window.geometry("+100+100")
 window.resizable(False, False)
 window.bind('<Escape>', stop)
-history_frame = LabelFrame(text='닉네임 컨셉 선택')
+main_frame = LabelFrame(text='닉네임 컨셉 선택')
 result_frame = LabelFrame(window)
 command_frame = LabelFrame(text='Command')
 command1_frame = LabelFrame(text='Command')
 
 
 def Main():
-    global Gameselect, nametype, word, history_frame, command_frame
-    # 게임 선택
+    global Gameselect, nametype, word, main_frame, command_frame
 
     result_frame.destroy()
     command1_frame.destroy()
 
+    main_frame = LabelFrame()
+    main_frame.pack()
 
-    history_frame = LabelFrame(text='닉네임 컨셉 선택')
-    history_frame.pack(fill=X, pady=7)
-
-    label = Label(history_frame, text="게임 선택")
+    # 게임 선택
+    label = Label(main_frame, text="게임 선택")
     label.pack(anchor="w", pady=7)
-    Gameselect = Combobox(history_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
+    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '콜오브듀티'])
     Gameselect.current()
     Gameselect.bind('<<ComboboxSelected>>', select_game)
     # Gameselect.bind('<Return>', enter_item)
     Gameselect.pack()
 
     # 테마 선택
-
-    history_listbox = Listbox(history_frame, selectmode='multiple', height=5)
-    history_listbox.insert(0, '개인정보')
-    history_listbox.insert(1, '랜덤')
-    history_listbox.insert(END, '기본단어')
-    history_listbox.pack(side=LEFT, fill=X, expand=True)
-    history_listbox.bind('<<ListboxSelect>>')
-    scrollbar = Scrollbar(history_frame)
-    scrollbar.pack(side=RIGHT, fill=Y)
-    history_listbox.configure(yscrollcommand=scrollbar.set)
-    scrollbar.configure(command=history_listbox.yview)
+    label = Label(main_frame, text="닉네임 컨셉 선택")
+    label.pack(anchor="w")
+    main_listbox = Listbox(main_frame, selectmode='multiple', height=5)
+    main_listbox.insert(0, '개인정보')
+    main_listbox.insert(1, '랜덤')
+    main_listbox.insert(END, '기본단어')
+    main_listbox.pack(fill=X, expand=True)
+    main_listbox.bind('<<ListboxSelect>>')
 
     # 필수 단어 입력
-    label = Label(history_frame, text="필수 단어 입력")
+    label = Label(main_frame, text="필수 단어 입력")
     label.pack(anchor="w", pady=7)
-    word = Entry(history_frame, width=50)
+    word = Entry(main_frame, width=50)
     word.pack()
 
     # 닉네임 조합 선택
-    label = Label(history_frame, text="닉네임 구성 선택")
+    label = Label(main_frame, text="닉네임 구성 선택")
     label.pack(anchor="w", pady=7)
-    nametype = Combobox(history_frame, width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
+    nametype = Combobox(main_frame, width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
     nametype.current()
     nametype.bind('<<ComboboxSelected>>', select_nametype)
     # nametype.bind('<Return>', enter_item)
@@ -152,18 +148,21 @@ def Main():
 def result(event=None):
     global command1_frame, result_frame
 
-    history_frame.destroy()
+    main_frame.destroy()
     command_frame.destroy()
 
-    result_frame = LabelFrame(window)
-    label = Label(text="결과")
+    result_frame = LabelFrame()
+    result_frame.pack()
+
+    label = Label(result_frame, text="결과")
     label.pack(anchor="w", pady=7)
-    history_listbox = Listbox(result_frame, selectmode='single', height=5)
+    history_listbox = Listbox(result_frame, selectmode='single', height=5, width=50)
     for n in range(0, len(namelist)):
         history_listbox.insert(n, namelist[n])
-    # history_listbox.insert(END, '기본단어')
+    history_listbox.insert(END, '기본단어')
     history_listbox.pack(side=LEFT, fill=X, expand=True)
     history_listbox.bind('<<ListboxSelect>>')
+
     scrollbar = Scrollbar(result_frame)
     scrollbar.pack(side=RIGHT, fill=Y)
     history_listbox.configure(yscrollcommand=scrollbar.set)
