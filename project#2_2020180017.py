@@ -15,8 +15,9 @@ user_agent = {
     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
 }
 
-namelist = ['groundkcm', 'name1', 'name2']
+namelist = ['yuntaepyung', 'groundkcm', 'name1', 'name2']
 untaken_namelist = []
+find = False
 
 keyword = ''
 url = ''
@@ -43,7 +44,7 @@ def seturl():
         url = f'https://www.op.gg/summoners/kr/{keyword}'
     elif game == '배틀그라운드':
         url = f'https://pubg.op.gg/user/{keyword}'
-    elif game == '배틀필트':
+    elif game == '배틀필드':
         url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
     elif game == '오버워치':
         url = f'https://overwatch.op.gg/search/?playerName={keyword}'
@@ -64,7 +65,7 @@ def make_nickname():
 
 
 def find_untaken_nickname():
-    global keyword
+    global keyword, game, untaken_namelist, find
 
     for name in namelist:
         keyword = name
@@ -73,12 +74,27 @@ def find_untaken_nickname():
 
         soup = BeautifulSoup(r.text, 'lxml')
 
-        elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
+        if game == '로스트아크':
+            elms = soup.find_all(class_=re.compile(r'^profile-attention'))
+        elif game == '메이플스토리':
+            elms = soup.find_all(class_=re.compile(r'^d-inline-block align-middle pl-3'))
+        elif game == '마인크래프트':  #보류
+            elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
+        elif game == 'LoL':
+            elms = soup.find_all(class_=re.compile(r'^header__title'))
+        elif game == '배틀그라운드':
+            elms = soup.find_all(class_=re.compile(r'^not-found__desc'))
+        elif game == '배틀필드':  #보류
+            elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
+        elif game == '오버워치':  #보류
+            elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
         for e in elms:
+            untaken_namelist.append(name)
             print(e.text)
 
         if not elms:
             print('False')
+    find = True
 
 
 window = Tk()
@@ -147,7 +163,7 @@ def Main():
 
 
 def result(event=None):
-    global command1_frame, result_frame
+    global command1_frame, result_frame, untaken_namelist
 
     main_frame.destroy()
     command_frame.destroy()
@@ -158,8 +174,12 @@ def result(event=None):
     label = Label(result_frame, text="결과")
     label.pack(anchor="w", pady=7)
     history_listbox = Listbox(result_frame, selectmode='single', height=5, width=50)
-    for n in range(0, len(namelist)):
-        history_listbox.insert(n, namelist[n])
+    if not find:
+        for n in range(0, len(namelist)):
+            history_listbox.insert(n, namelist[n])
+    else:
+        for n in range(0, len(untaken_namelist)):
+            history_listbox.insert(n, namelist[n])
     history_listbox.pack(side=LEFT, fill=X, expand=True)
 
     scrollbar = Scrollbar(result_frame)
