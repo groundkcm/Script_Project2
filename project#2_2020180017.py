@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter.ttk import *
-import tkinter.messagebox as messagebox
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -8,6 +7,7 @@ from bs4 import BeautifulSoup
 import csv
 import re
 import logging
+import requests
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -21,27 +21,6 @@ untaken_namelist = []
 keyword = ''
 url = ''
 game = ''
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option('excludeSwitches', ['enable-automation'])
-options.add_argument(f'user-agent={user_agent}')
-# browser = webdriver.Chrome(options=options)
-#
-# browser.get(url)
-# browser.refresh()
-#
-# browser = webdriver.Chrome()
-# browser.get(url)
-# browser.refresh()
-#
-# soup = BeautifulSoup(browser.page_source, features='lxml')
-# elms = soup.find_all(class_='_image _listImage')
-#
-# for i, e in enumerate(elms):
-#     caption = e['alt']
-#     image_url = e['data-lazy-src'] if e.has_attr('data-lazy-src') else e['src']
-#     print(f'No: {i:3}, Caption: {caption}, URL: {image_url}')
-
 
 def stop():
     window.quit()
@@ -87,13 +66,19 @@ def make_nickname():
 def find_untaken_nickname():
     global keyword
 
-    browser = webdriver.Chrome(options=options)
     for name in namelist:
         keyword = name
         seturl()
+        r = requests.get(url, headers=user_agent)
 
-        browser.get(url)
-        browser.refresh()
+        soup = BeautifulSoup(r.text, 'lxml')
+
+        elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
+        for e in elms:
+            print(e.text)
+
+        if not elms:
+            print('False')
 
 
 window = Tk()
@@ -175,7 +160,6 @@ def result(event=None):
     history_listbox = Listbox(result_frame, selectmode='single', height=5, width=50)
     for n in range(0, len(namelist)):
         history_listbox.insert(n, namelist[n])
-    history_listbox.insert(END, '기본단어')
     history_listbox.pack(side=LEFT, fill=X, expand=True)
 
     scrollbar = Scrollbar(result_frame)

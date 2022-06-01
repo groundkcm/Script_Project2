@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="게임 선택 시 해당 사이트 url 저장">
+    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="닉네임 사이트에서 검색">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
@@ -175,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654013807321</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="닉네임 사이트에서 검색">
+      <created>1654014601451</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1654014601451</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -196,6 +203,7 @@
     <MESSAGE value="창 구성 조정" />
     <MESSAGE value="chromedriver 추가" />
     <MESSAGE value="게임 선택 시 해당 사이트 url 저장" />
-    <option name="LAST_COMMIT_MESSAGE" value="게임 선택 시 해당 사이트 url 저장" />
+    <MESSAGE value="닉네임 사이트에서 검색" />
+    <option name="LAST_COMMIT_MESSAGE" value="닉네임 사이트에서 검색" />
   </component>
 </project>
