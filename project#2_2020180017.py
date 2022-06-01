@@ -65,7 +65,7 @@ def make_nickname():
 
 
 def find_untaken_nickname():
-    global keyword, game, untaken_namelist, find
+    global keyword, game, untaken_namelist, find, untaken_listbox
 
     for name in namelist:
         keyword = name
@@ -94,8 +94,9 @@ def find_untaken_nickname():
 
         if not elms:
             print('False')
-    find = True
-
+    # find = True
+    for n in range(0, len(untaken_namelist)):
+        untaken_listbox.insert(n, namelist[n])
 
 window = Tk()
 window.title("Name is already taken")
@@ -107,6 +108,7 @@ main_frame = LabelFrame()
 result_frame = LabelFrame()
 command_frame = LabelFrame()
 command1_frame = LabelFrame()
+untaken_listbox = Listbox()
 
 
 def Main(event=None):
@@ -163,7 +165,9 @@ def Main(event=None):
 
 
 def result(event=None):
-    global command1_frame, result_frame, untaken_namelist
+    global command1_frame, result_frame, untaken_namelist, untaken_listbox
+
+    window.update_idletasks()
 
     main_frame.destroy()
     command_frame.destroy()
@@ -174,18 +178,19 @@ def result(event=None):
     label = Label(result_frame, text="결과")
     label.pack(anchor="w", pady=7)
     history_listbox = Listbox(result_frame, selectmode='single', height=5, width=50)
-    if not find:
-        for n in range(0, len(namelist)):
-            history_listbox.insert(n, namelist[n])
-    else:
-        for n in range(0, len(untaken_namelist)):
-            history_listbox.insert(n, namelist[n])
-    history_listbox.pack(side=LEFT, fill=X, expand=True)
+    for n in range(0, len(namelist)):
+        history_listbox.insert(n, namelist[n])
+    history_listbox.pack(fill=X, expand=True)
 
-    scrollbar = Scrollbar(result_frame)
-    scrollbar.pack(side=RIGHT, fill=Y)
-    history_listbox.configure(yscrollcommand=scrollbar.set)
-    scrollbar.configure(command=history_listbox.yview)
+    # scrollbar = Scrollbar(result_frame)
+    # scrollbar.pack(side=RIGHT, fill=Y)
+    # history_listbox.configure(yscrollcommand=scrollbar.set)
+    # scrollbar.configure(command=history_listbox.yview)
+
+    label = Label(result_frame, text="사용가능 닉네임")
+    label.pack(anchor="w", pady=7)
+    untaken_listbox = Listbox(result_frame, selectmode='single', height=5, width=50)
+    untaken_listbox.pack(fill=X, expand=True)
 
     command1_frame = LabelFrame(text='Command')
     command1_frame.pack(fill=BOTH, padx=5, pady=5)
@@ -196,4 +201,5 @@ def result(event=None):
 
 
 Main()
+
 window.mainloop()
