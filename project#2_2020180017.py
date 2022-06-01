@@ -109,7 +109,7 @@ command_frame = LabelFrame()
 command1_frame = LabelFrame()
 
 
-def Main():
+def Main(event=None):
     global Gameselect, nametype, main_listbox, word, main_frame, command_frame
 
     result_frame.destroy()
@@ -190,6 +190,7 @@ def result(event=None):
     command1_frame = LabelFrame(text='Command')
     command1_frame.pack(fill=BOTH, padx=5, pady=5)
     Button(command1_frame, command=find_untaken_nickname, text='Find Untaken Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command1_frame, command=Main, text='Back to Select').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
     window.bind_all('<Control-q>', stop)
 
