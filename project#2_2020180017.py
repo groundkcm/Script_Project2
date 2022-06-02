@@ -112,13 +112,15 @@ untaken_listbox = Listbox()
 
 
 def Main(event=None):
-    global Gameselect, nametype, main_listbox, word, main_frame, command_frame
+    global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist
 
     result_frame.destroy()
     command1_frame.destroy()
 
     main_frame = LabelFrame()
     main_frame.pack()
+
+    untaken_namelist = []
 
     # 게임 선택
     label = Label(main_frame, text="게임 선택")
