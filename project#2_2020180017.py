@@ -6,8 +6,10 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import csv
 import re
+import exrex
 import logging
 import requests
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
