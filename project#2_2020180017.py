@@ -65,6 +65,30 @@ def select_nameconcept(event=None):
 def make_nickname():
     word.get()
 
+    pattern = r'''
+        ^
+        (
+            (02|051|053|010)
+            |
+            (\(
+                [ ]*
+                (02|051|053|010)
+                [ ]*
+            \))
+        [ ]* -? 
+        )?
+        [ ]*
+        \d{3,4}
+        [ ]* -? [ ]*
+        \d{4}
+        $
+    '''
+
+    final_pattern = re.sub(r'[ ]{2,}|\t|\n', '', pattern)
+    # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
+    password_re = re.compile(r'[a-zA-Z]{10,}[0-9]{3,}')  # 영어숫자조합 10자 이상
+    exrex.getone(password_re.pattern, 2)
+
 
 def find_untaken_nickname():
     global keyword, game, untaken_namelist, find, untaken_listbox
