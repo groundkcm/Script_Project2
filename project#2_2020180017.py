@@ -163,7 +163,12 @@ def Main(event=None):
     main_listbox = Listbox(main_frame, selectmode='multiple', height=5)
     main_listbox.insert(0, '개인정보')
     main_listbox.insert(1, '랜덤')
-    main_listbox.insert(END, '기본단어')
+    main_listbox.insert(2, '사물')
+    main_listbox.insert(3, '중국풍')
+    main_listbox.insert(4, '도시')
+    main_listbox.insert(5, '사람')
+    main_listbox.insert(5, '캐릭터')
+    main_listbox.insert(6, '의성어')
     main_listbox.pack(fill=X, expand=True)
     main_listbox.bind('<<ListboxSelect>>', select_nameconcept)
 
