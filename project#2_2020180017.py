@@ -97,7 +97,7 @@ def make_nickname():
 
     final_pattern = re.sub(r'[ ]{2,}|\t|\n', '', pattern)
     # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
-    name_re = re.compile(r'[a-z]{4,}[0-9]{2,}')  # 영어숫자조합 10자 이상
+    name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
     namelist.append(exrex.getone(name_re.pattern, 2))
 
     history_listbox.delete('0', END)
