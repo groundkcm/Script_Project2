@@ -19,6 +19,7 @@ user_agent = {
 
 namelist = ['yuntaepyung', 'groundkcm', 'name1', 'name2']
 untaken_namelist = []
+nametuple = ()
 find = False
 
 keyword = ''
@@ -58,7 +59,9 @@ def select_nametype(event=None):
 
 
 def select_nameconcept(event=None):
+    global nametuple
     text = main_listbox.curselection()
+    nametuple = text
     print(text, 'is entered')
 
 
