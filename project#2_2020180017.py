@@ -17,7 +17,8 @@ user_agent = {
     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
 }
 
-namelist = ['yuntaepyung', 'groundkcm', 'name1', 'name2']
+# namelist = ['yuntaepyung', 'groundkcm', 'name1', 'name2']
+namelist = []
 untaken_namelist = []
 nametuple = ()
 find = False
@@ -68,8 +69,12 @@ def select_nameconcept(event=None):
 
 
 def make_nickname():
-    global word, nametuple, type
-    word.get()
+    global word, nametuple, type, find, namelist, history_listbox
+    try:
+        word.get()
+    except:
+        pass
+    namelist = []
 
     pattern = r'''
         ^
@@ -94,10 +99,13 @@ def make_nickname():
     # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
     name_re = re.compile(r'[a-z]{4,}[0-9]{2,}')  # 영어숫자조합 10자 이상
     namelist.append(exrex.getone(name_re.pattern, 2))
-    print(exrex.getone(name_re.pattern, 2))
 
-    result()
+    history_listbox.delete('0', END)
+    for n in range(0, len(namelist)):
+        history_listbox.insert(n, namelist[n])
 
+    if find:
+     result()
 
 def find_untaken_nickname():
     global keyword, game, untaken_namelist, untaken_listbox
@@ -144,13 +152,13 @@ result_frame = LabelFrame()
 command_frame = LabelFrame()
 command1_frame = LabelFrame()
 untaken_listbox = Listbox()
+history_listbox = Listbox()
 
 
 def Main(event=None):
     global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist, find
 
-    find = False
-
+    find = True
     result_frame.destroy()
     command1_frame.destroy()
 
@@ -202,16 +210,14 @@ def Main(event=None):
     command_frame = LabelFrame(text='Command')
     command_frame.pack(fill=BOTH, padx=5, pady=5)
     Button(command_frame, command=make_nickname, text='Make Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
-    # Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
-    # Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
     window.bind_all('<Control-q>', stop)
 
 
 def result(event=None):
-    global command1_frame, result_frame, untaken_namelist, untaken_listbox, find
+    global command1_frame, result_frame, untaken_namelist, untaken_listbox, find, namelist, history_listbox
 
-    find = True
+    find = False
     window.update_idletasks()
 
     main_frame.destroy()
@@ -241,6 +247,7 @@ def result(event=None):
     command1_frame.pack(fill=BOTH, padx=5, pady=5)
     Button(command1_frame, command=find_untaken_nickname, text='Find Untaken Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
     Button(command1_frame, command=Main, text='Back to Select').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command1_frame, command=make_nickname, text='ReMake').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
     window.bind_all('<Control-q>', stop)
 
