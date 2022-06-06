@@ -22,6 +22,7 @@ untaken_namelist = []
 nametuple = ()
 find = False
 
+
 keyword = ''
 url = ''
 game = ''
@@ -55,14 +56,12 @@ def seturl():
 
 def select_nametype(event=None):
     text = nametype.get()
-    print(text, 'is selected')
 
 
 def select_nameconcept(event=None):
     global nametuple
     text = main_listbox.curselection()
     nametuple = text
-    print(text, 'is entered')
 
 
 def make_nickname():
@@ -90,11 +89,13 @@ def make_nickname():
     final_pattern = re.sub(r'[ ]{2,}|\t|\n', '', pattern)
     # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
     password_re = re.compile(r'[a-zA-Z]{10,}[0-9]{3,}')  # 영어숫자조합 10자 이상
-    exrex.getone(password_re.pattern, 2)
+    print(exrex.getone(password_re.pattern, 2))
+
+    result()
 
 
 def find_untaken_nickname():
-    global keyword, game, untaken_namelist, find, untaken_listbox
+    global keyword, game, untaken_namelist, untaken_listbox
 
     for name in namelist:
         keyword = name
@@ -141,7 +142,9 @@ untaken_listbox = Listbox()
 
 
 def Main(event=None):
-    global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist
+    global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist, find
+
+    find = False
 
     result_frame.destroy()
     command1_frame.destroy()
@@ -193,7 +196,7 @@ def Main(event=None):
 
     command_frame = LabelFrame(text='Command')
     command_frame.pack(fill=BOTH, padx=5, pady=5)
-    Button(command_frame, command=result, text='Make Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command_frame, command=make_nickname, text='Make Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
     # Button(command_frame, command=make_normal_folders, text='make normal_folders').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
     # Button(command_frame, command=move_files, text='move files').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
@@ -201,8 +204,9 @@ def Main(event=None):
 
 
 def result(event=None):
-    global command1_frame, result_frame, untaken_namelist, untaken_listbox
+    global command1_frame, result_frame, untaken_namelist, untaken_listbox, find
 
+    find = True
     window.update_idletasks()
 
     main_frame.destroy()
