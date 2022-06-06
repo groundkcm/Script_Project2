@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -265,12 +266,24 @@
       <option name="project" value="LOCAL" />
       <updated>1654519861366</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="랜덤 닉네임 글자수 변경">
+      <created>1654519910115</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1654519910115</updated>
+    </task>
+    <task id="LOCAL-00032" summary="버튼 이름 변경">
+      <created>1654520081454</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1654520081454</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="combobox 추가" />
-    <MESSAGE value="닉네임 조합 조건 추가" />
     <MESSAGE value="조건 당 라벨추가" />
     <MESSAGE value="창 이름 변경" />
     <MESSAGE value="조건 사이 여백 추가" />
@@ -294,6 +307,8 @@
     <MESSAGE value="닉네임 랜덤 생성 함수 배치" />
     <MESSAGE value="랜덤 생성 후 리스트에 추가" />
     <MESSAGE value="반복 생성 버튼 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="반복 생성 버튼 추가" />
+    <MESSAGE value="랜덤 닉네임 글자수 변경" />
+    <MESSAGE value="버튼 이름 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="버튼 이름 변경" />
   </component>
 </project>

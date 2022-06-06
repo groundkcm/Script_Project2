@@ -61,6 +61,12 @@ def select_nametype(event=None):
     text = nametype.get()
     type = text
 
+def select_namelen(event=None):
+    global namesize
+    text = nametype.get()
+    namesize = text
+    print(text)
+
 
 def select_nameconcept(event=None):
     global nametuple
@@ -76,39 +82,23 @@ def make_nickname():
         pass
     namelist = []
 
-    pattern = r'''
-        ^
-        (
-            (02|051|053|010)
-            |
-            (\(
-                [ ]*
-                (02|051|053|010)
-                [ ]*
-            \))
-        [ ]* -? 
-        )?
-        [ ]*
-        \d{3,4}
-        [ ]* -? [ ]*
-        \d{4}
-        $
-    '''
-
-    final_pattern = re.sub(r'[ ]{2,}|\t|\n', '', pattern)
     # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
     namelist.append(exrex.getone(name_re.pattern, 2))
 
-    history_listbox.delete('0', END)
-    for n in range(0, len(namelist)):
-        history_listbox.insert(n, namelist[n])
-
     if find:
-     result()
+        result()
+    else:
+        history_listbox.delete('0', END)
+        for n in range(0, len(namelist)):
+            history_listbox.insert(n, namelist[n])
+
 
 def find_untaken_nickname():
     global keyword, game, untaken_namelist, untaken_listbox
+
+    untaken_namelist = []
+    untaken_listbox.delete('0', END)
 
     for name in namelist:
         keyword = name
@@ -133,6 +123,7 @@ def find_untaken_nickname():
             elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
         for e in elms:
             untaken_namelist.append(name)
+            print(e.text)
 
         if not elms:
             print('False')
@@ -202,7 +193,14 @@ def Main(event=None):
     nametype = Combobox(main_frame, width=50, height=5, values=['영어', '영어 + 숫자', '한글', '한글 + 숫자', '한글 + 영어', '한글 + 영어 + 숫자'])
     nametype.current()
     nametype.bind('<<ComboboxSelected>>', select_nametype)
-    # nametype.bind('<Return>', enter_item)
+    nametype.pack()
+
+    # 닉네임 글자수 선택
+    label = Label(main_frame, text="닉네임 글자 수 선택")
+    label.pack(anchor="w", pady=7)
+    nametype = Combobox(main_frame, width=50, height=5, values=['5글자 이내', '5글자 ~ 10글자', '10글자 ~ 15글자'])
+    nametype.current()
+    nametype.bind('<<ComboboxSelected>>', select_namelen)
     nametype.pack()
 
 
