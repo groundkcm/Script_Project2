@@ -133,7 +133,6 @@ def find_untaken_nickname():
             elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
         for e in elms:
             untaken_namelist.append(name)
-            print(e.text)
 
         if not elms:
             print('False')
@@ -245,9 +244,9 @@ def result(event=None):
 
     command1_frame = LabelFrame(text='Command')
     command1_frame.pack(fill=BOTH, padx=5, pady=5)
-    Button(command1_frame, command=find_untaken_nickname, text='Find Untaken Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
-    Button(command1_frame, command=Main, text='Back to Select').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command1_frame, command=find_untaken_nickname, text='Find Nickname').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
     Button(command1_frame, command=make_nickname, text='ReMake').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
+    Button(command1_frame, command=Main, text='Back').pack(side=LEFT, expand=True, fill=BOTH, padx=5, pady=5)
 
     window.bind_all('<Control-q>', stop)
 
