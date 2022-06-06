@@ -26,6 +26,7 @@ find = False
 keyword = ''
 url = ''
 game = ''
+type = ''
 
 def stop():
     window.quit()
@@ -55,7 +56,9 @@ def seturl():
 
 
 def select_nametype(event=None):
+    global type
     text = nametype.get()
+    type = text
 
 
 def select_nameconcept(event=None):
@@ -65,6 +68,7 @@ def select_nameconcept(event=None):
 
 
 def make_nickname():
+    global word, nametuple, type
     word.get()
 
     pattern = r'''
@@ -88,8 +92,9 @@ def make_nickname():
 
     final_pattern = re.sub(r'[ ]{2,}|\t|\n', '', pattern)
     # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
-    password_re = re.compile(r'[a-zA-Z]{10,}[0-9]{3,}')  # 영어숫자조합 10자 이상
-    print(exrex.getone(password_re.pattern, 2))
+    name_re = re.compile(r'[a-z]{4,}[0-9]{2,}')  # 영어숫자조합 10자 이상
+    namelist.append(exrex.getone(name_re.pattern, 2))
+    print(exrex.getone(name_re.pattern, 2))
 
     result()
 
