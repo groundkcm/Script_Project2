@@ -64,8 +64,9 @@ def select_nametype(event=None):
 def select_namelen(event=None):
     global namesize
     text = nametype.get()
-    namesize = text
-    print(text)
+    size_re = re.compile(r'\d{1,2}')
+    text = size_re.findall(text)
+    namesize = text[len(text)-1]
 
 
 def select_nameconcept(event=None):
@@ -75,7 +76,7 @@ def select_nameconcept(event=None):
 
 
 def make_nickname():
-    global word, nametuple, type, find, namelist, history_listbox
+    global word, nametuple, type, find, namelist, history_listbox, namesize
     try:
         word.get()
     except:
