@@ -27,6 +27,7 @@ keyword = ''
 url = ''
 game = ''
 type = ''
+inword = ''
 
 def stop():
     window.quit()
@@ -83,6 +84,13 @@ def scrapword():
     for e in elms:
         cword.append(e.text)
 
+    surl = 'https://namu.wiki/w/분류:영어%20단어?namespace=문서&cfrom=Moon'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        eword.append(e.text)
+
 def select_game(event=None):
     global game
     game = Gameselect.get()
@@ -122,9 +130,9 @@ def select_nameconcept(event=None):
 
 
 def make_nickname():
-    global word, nametuple, type, find, namelist, history_listbox, namesize, nword, cword, eword
+    global word, nametuple, type, find, namelist, history_listbox, namesize, nword, cword, eword, inword
     try:
-        word.get()
+        inword = str(word.get())
     except:
         pass
     namelist = []
@@ -138,7 +146,7 @@ def make_nickname():
     # check_re = re.compile(r'한글')
     # if check_re.findall(type):
     #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-    temp = temp + exrex.getone(name_re.pattern, 2)
+    temp = inword + temp + exrex.getone(name_re.pattern, 2)
     # temp = exrex.getone(name_re.pattern, 2)
     if namesize - 5 <= len(temp) <= namesize:
         namelist.append(temp)
