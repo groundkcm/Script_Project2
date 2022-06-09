@@ -145,7 +145,8 @@ def select_namelen(event=None):
 
 def select_nameconcept(event=None):
     global nametuple
-    text = main_listbox.curselection()
+    text = main_listbox.get(main_listbox.curselection())
+    print(text)
     nametuple = text
 
 
@@ -158,40 +159,63 @@ def make_nickname():
     namelist = []
     if type == '영어 + 숫자':
         for _ in range(10):
-            temp = random.choice(eword)
-            name_re = re.compile(r'[0-9]{1,2}')
-            temp = inword + temp + exrex.getone(name_re.pattern, 2)
-            if namesize - 5 <= len(temp) <= namesize:
+            if nametuple == '랜덤':
+                name_re = re.compile(r'[a-z]{3,}[0-9]{1,2}')
+                temp = inword + exrex.getone(name_re.pattern, 2)
                 namelist.append(temp)
+            else:
+                temp = random.choice(eword)
+                name_re = re.compile(r'[0-9]{1,2}')
+                temp = inword + temp + exrex.getone(name_re.pattern, 2)
+                if namesize - 5 <= len(temp) <= namesize:
+                    namelist.append(temp)
     elif type == '영어':
         for _ in range(10):
-            temp = random.choice(eword)
-            temp = inword + temp
-            if namesize - 5 <= len(temp) <= namesize:
+            if nametuple == '랜덤':
+                name_re = re.compile(r'[a-z]{4,5}')
+                temp = inword + exrex.getone(name_re.pattern, 2)
                 namelist.append(temp)
+            else:
+                temp = random.choice(eword)
+                temp = inword + temp
+                if namesize - 5 <= len(temp) <= namesize:
+                    namelist.append(temp)
     elif type == '한글 + 숫자':
         for _ in range(10):
-            temp = random.choice(nword)
-            name_re = re.compile(r'[0-9]{1,2}')
+            if nametuple == '무협(한글)':
+                temp = random.choice(cword)
+                name_re = re.compile(r'[0-9]{1,2}')
+            else:
+                temp = random.choice(nword)
+                name_re = re.compile(r'[0-9]{1,2}')
             temp = inword + temp + exrex.getone(name_re.pattern, 2)
             if namesize - 5 <= len(temp) <= namesize:
                 namelist.append(temp)
     elif type == '한글':
         for _ in range(10):
-            temp = random.choice(nword)
+            if nametuple == '무협(한글)':
+                temp = random.choice(cword)
+            else:
+                temp = random.choice(nword)
             temp = inword + temp
             if namesize - 5 <= len(temp) <= namesize:
                 namelist.append(temp)
     elif type == '한글 + 영어':
         for _ in range(10):
-            temp = random.choice(nword)
+            if nametuple == '무협(한글)':
+                temp = random.choice(cword)
+            else:
+                temp = random.choice(nword)
             etemp = random.choice(eword)
             temp = inword + temp + etemp
             if namesize - 5 <= len(temp) <= namesize:
                 namelist.append(temp)
     elif type == '한글 + 영어 + 숫자':
         for _ in range(10):
-            temp = random.choice(nword)
+            if nametuple == '무협(한글)':
+                temp = random.choice(cword)
+            else:
+                temp = random.choice(nword)
             etemp = random.choice(eword)
             name_re = re.compile(r'[0-9]{1,2}')
             temp = inword + temp + etemp + exrex.getone(name_re.pattern, 2)
@@ -270,13 +294,12 @@ def Main(event=None):
     Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '메이플스토리', '마인크래프트'])
     Gameselect.current()
     Gameselect.bind('<<ComboboxSelected>>', select_game)
-    # Gameselect.bind('<Return>', enter_item)
     Gameselect.pack()
 
     # 테마 선택
     label = Label(main_frame, text="닉네임 컨셉 선택")
     label.pack(anchor="w")
-    main_listbox = Listbox(main_frame, selectmode='multiple', height=5)
+    main_listbox = Listbox(main_frame, selectmode='single', height=5)
     main_listbox.insert(0, '기본')
     main_listbox.insert(1, '랜덤')
     main_listbox.insert(3, '무협(한글)')
