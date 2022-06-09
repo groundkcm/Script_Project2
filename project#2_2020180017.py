@@ -15,7 +15,6 @@ user_agent = {
     'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
 }
 
-# namelist = ['yuntaepyung', 'groundkcm', 'name1', 'name2']
 namelist = []
 untaken_namelist = []
 nametuple = ()
@@ -34,12 +33,55 @@ def stop():
 
 
 def scrapword():
+    global nword, cword, eword
     surl = 'https://namu.wiki/w/분류:프랑스어%20단어?namespace=문서&cfrom=실루엣'
     r = requests.get(surl, headers=user_agent)
     soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[data-v-42ad96de] ul li a')
+    elms = soup.select('div[class="_1729KulV"] a')
     for e in elms:
-        print(e.text)
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/분류:프랑스어%20단어?namespace=문서&cuntil=시스'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/분류:라틴어%20단어?namespace=문서&cfrom=솔리움%20마키나%3A%20루멘'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/분류:그리스어%20단어'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/분류:스페인어%20단어'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/분류:스페인어%20단어'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[class="_1729KulV"] a')
+    for e in elms:
+        nword.append(e.text)
+
+    surl = 'https://namu.wiki/w/무협소설/용어'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.find_all(class_=re.compile(r'^DcHFMcm1'))
+    for e in elms:
+        cword.append(e.text)
 
 def select_game(event=None):
     global game
@@ -142,6 +184,8 @@ def find_untaken_nickname():
     for n in range(0, len(untaken_namelist)):
         untaken_listbox.insert(n, namelist[n])
 
+
+scrapword()
 window = Tk()
 window.title("Name is already taken")
 window.geometry("+100+100")
@@ -155,7 +199,6 @@ command1_frame = LabelFrame()
 untaken_listbox = Listbox()
 history_listbox = Listbox()
 
-scrapword()
 
 def Main(event=None):
     global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist, find

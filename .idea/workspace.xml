@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -307,11 +308,17 @@
       <option name="project" value="LOCAL" />
       <updated>1654785882382</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="단어 리스트에서 random.choice 사용하여 뽑기">
+      <created>1654789799027</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1654789799027</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="필수 단어 입력 추가" />
     <MESSAGE value="조건 중복선택 가능" />
     <MESSAGE value="창 전환 구현" />
     <MESSAGE value="창 구성 조정" />
@@ -336,6 +343,7 @@
     <MESSAGE value="선택한 글자 수 뽑아오기" />
     <MESSAGE value="닉네임 랜덤 만들기 시작" />
     <MESSAGE value="url에서 단어 가져오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="url에서 단어 가져오기" />
+    <MESSAGE value="단어 리스트에서 random.choice 사용하여 뽑기" />
+    <option name="LAST_COMMIT_MESSAGE" value="단어 리스트에서 random.choice 사용하여 뽑기" />
   </component>
 </project>
