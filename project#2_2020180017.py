@@ -22,7 +22,9 @@ namelist = []
 untaken_namelist = []
 nametuple = ()
 find = False
-
+nword = []
+cword = []
+eword = []
 
 keyword = ''
 url = ''
@@ -32,6 +34,14 @@ type = ''
 def stop():
     window.quit()
 
+
+def scrapword():
+    surl = 'https://namu.wiki/w/분류:프랑스어%20단어?namespace=문서&cfrom=실루엣'
+    r = requests.get(surl, headers=user_agent)
+    soup = BeautifulSoup(r.text, 'lxml')
+    elms = soup.select('div[data-v-42ad96de] ul li a')
+    for e in elms:
+        print(e.text)
 
 def select_game(event=None):
     global game
@@ -81,11 +91,11 @@ def make_nickname():
 
     name_re = re.compile(r'')
     check_re = re.compile(r'영어')
-    if check_re.search(type):
+    if check_re.findall(type):
         name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
 
     check_re = re.compile(r'한글')
-    if check_re.search(type):
+    if check_re.findall(type):
         name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
 
     temp = exrex.getone(name_re.pattern, 2)
@@ -101,7 +111,7 @@ def make_nickname():
 
 
 def find_untaken_nickname():
-    global keyword, game, untaken_namelist, untaken_listbox
+    global keyword, game, untaken_namelist, untaken_listbox, url
 
     untaken_namelist = []
     untaken_listbox.delete('0', END)
@@ -146,6 +156,7 @@ command1_frame = LabelFrame()
 untaken_listbox = Listbox()
 history_listbox = Listbox()
 
+scrapword()
 
 def Main(event=None):
     global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist, find
