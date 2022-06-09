@@ -7,12 +7,12 @@ import exrex
 import logging
 import requests
 import random
-
+import cloudscraper
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 user_agent = {
-    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'
 }
 
 namelist = []
@@ -36,60 +36,79 @@ def stop():
 def scrapword():
     global nword, cword, eword
     surl = 'https://namu.wiki/w/분류:프랑스어%20단어?namespace=문서&cfrom=실루엣'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    scraper = cloudscraper.CloudScraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/분류:프랑스어%20단어?namespace=문서&cuntil=시스'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/분류:라틴어%20단어?namespace=문서&cfrom=솔리움%20마키나%3A%20루멘'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/분류:그리스어%20단어'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/분류:스페인어%20단어'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/분류:스페인어%20단어'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[class="yLP12cjc"] a')
     for e in elms:
-        nword.append(e.text)
+        nword.append(e.string)
 
     surl = 'https://namu.wiki/w/무협소설/용어'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
     elms = soup.find_all(class_=re.compile(r'^DcHFMcm1'))
     for e in elms:
         cword.append(e.text)
 
     surl = 'https://namu.wiki/w/분류:영어%20단어?namespace=문서&cfrom=Moon'
-    r = requests.get(surl, headers=user_agent)
-    soup = BeautifulSoup(r.text, 'lxml')
-    elms = soup.select('div[class="_1729KulV"] a')
+    # r = requests.get(surl, headers=user_agent)
+    # soup = BeautifulSoup(r.text, 'lxml')
+    scraper = cloudscraper.create_scraper()
+    soup = BeautifulSoup(scraper.get(surl).text, 'lxml')
+    elms = soup.select('div[id="category-문서"] a')
     for e in elms:
-        eword.append(e.text)
+        eword.append(e.string)
+
+    print(nword)
+    print(eword)
+    print(cword)
 
 def select_game(event=None):
     global game

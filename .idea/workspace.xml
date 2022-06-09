@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
+    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="필수 단어 포함 닉네임 생성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
@@ -322,11 +322,17 @@
       <option name="project" value="LOCAL" />
       <updated>1654795938912</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="필수 단어 포함 닉네임 생성">
+      <created>1654796680379</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1654796680379</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="창 전환 구현" />
     <MESSAGE value="창 구성 조정" />
     <MESSAGE value="chromedriver 추가" />
     <MESSAGE value="게임 선택 시 해당 사이트 url 저장" />
@@ -351,6 +357,7 @@
     <MESSAGE value="url에서 단어 가져오기" />
     <MESSAGE value="단어 리스트에서 random.choice 사용하여 뽑기" />
     <MESSAGE value="여러 종류 단어 긁어오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="여러 종류 단어 긁어오기" />
+    <MESSAGE value="필수 단어 포함 닉네임 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="필수 단어 포함 닉네임 생성" />
   </component>
 </project>
