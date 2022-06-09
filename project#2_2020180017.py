@@ -50,10 +50,6 @@ def seturl():
         url = f'https://www.op.gg/summoners/kr/{keyword}'
     elif game == '배틀그라운드':
         url = f'https://pubg.op.gg/user/{keyword}'
-    elif game == '배틀필드':
-        url = f'https://battlefieldtracker.com/bfv/profile/origin/{keyword}/overview'
-    elif game == '오버워치':
-        url = f'https://overwatch.op.gg/search/?playerName={keyword}'
 
 
 def select_nametype(event=None):
@@ -66,7 +62,7 @@ def select_namelen(event=None):
     text = nametype.get()
     size_re = re.compile(r'\d{1,2}')
     text = size_re.findall(text)
-    namesize = text[len(text)-1]
+    namesize = int(text[len(text)-1])
 
 
 def select_nameconcept(event=None):
@@ -83,9 +79,18 @@ def make_nickname():
         pass
     namelist = []
 
-    # password_re = re.compile(r'[0-9a-zA-Z]{,15}') # 영어숫자조합 10자 이상
-    name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-    namelist.append(exrex.getone(name_re.pattern, 2))
+    name_re = re.compile(r'')
+    check_re = re.compile(r'영어')
+    if check_re.search(type):
+        name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
+
+    check_re = re.compile(r'한글')
+    if check_re.search(type):
+        name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
+
+    temp = exrex.getone(name_re.pattern, 2)
+    if namesize - 5 <= len(temp) <= namesize:
+        namelist.append(temp)
 
     if find:
         result()
@@ -118,10 +123,6 @@ def find_untaken_nickname():
             elms = soup.find_all(class_=re.compile(r'^header__title'))
         elif game == '배틀그라운드':
             elms = soup.find_all(class_=re.compile(r'^not-found__desc'))
-        elif game == '배틀필드':  #보류
-            elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
-        elif game == '오버워치':  #보류
-            elms = soup.find_all(class_=re.compile(r'^PlayerSearchMessage'))
         for e in elms:
             untaken_namelist.append(name)
             print(e.text)
@@ -161,7 +162,7 @@ def Main(event=None):
     # 게임 선택
     label = Label(main_frame, text="게임 선택")
     label.pack(anchor="w", pady=7)
-    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '오버워치', '배틀필드', '메이플스토리', '마인크래프트'])
+    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '메이플스토리', '마인크래프트'])
     Gameselect.current()
     Gameselect.bind('<<ComboboxSelected>>', select_game)
     # Gameselect.bind('<Return>', enter_item)
@@ -173,12 +174,8 @@ def Main(event=None):
     main_listbox = Listbox(main_frame, selectmode='multiple', height=5)
     main_listbox.insert(0, '개인정보')
     main_listbox.insert(1, '랜덤')
-    main_listbox.insert(2, '사물')
-    main_listbox.insert(3, '중국풍')
-    main_listbox.insert(4, '도시')
+    main_listbox.insert(3, '무협')
     main_listbox.insert(5, '사람')
-    main_listbox.insert(5, '캐릭터')
-    main_listbox.insert(6, '의성어')
     main_listbox.pack(fill=X, expand=True)
     main_listbox.bind('<<ListboxSelect>>', select_nameconcept)
 

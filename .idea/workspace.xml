@@ -287,11 +287,17 @@
       <option name="project" value="LOCAL" />
       <updated>1654533838019</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="선택한 글자 수 뽑아오기">
+      <created>1654693191074</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1654693191074</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="창 이름 변경" />
     <MESSAGE value="조건 사이 여백 추가" />
     <MESSAGE value="닉네임 검색 url 추가" />
     <MESSAGE value="필수 단어 입력 추가" />
@@ -316,6 +322,7 @@
     <MESSAGE value="랜덤 닉네임 글자수 변경" />
     <MESSAGE value="버튼 이름 변경" />
     <MESSAGE value="닉네임 글자 수 버튼 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="닉네임 글자 수 버튼 추가" />
+    <MESSAGE value="선택한 글자 수 뽑아오기" />
+    <option name="LAST_COMMIT_MESSAGE" value="선택한 글자 수 뽑아오기" />
   </component>
 </project>
