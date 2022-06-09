@@ -1,14 +1,12 @@
 from tkinter import *
 from tkinter.ttk import *
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import csv
 import re
 import exrex
 import logging
 import requests
+import random
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,9 +20,9 @@ namelist = []
 untaken_namelist = []
 nametuple = ()
 find = False
-nword = []
-cword = []
-eword = []
+nword = ['민서', '가나다라마바사', '고고']
+cword = ['방탄기공']
+eword = ['charlly', 'shelly']
 
 keyword = ''
 url = ''
@@ -82,23 +80,24 @@ def select_nameconcept(event=None):
 
 
 def make_nickname():
-    global word, nametuple, type, find, namelist, history_listbox, namesize
+    global word, nametuple, type, find, namelist, history_listbox, namesize, nword, cword, eword
     try:
         word.get()
     except:
         pass
     namelist = []
-
-    name_re = re.compile(r'')
-    check_re = re.compile(r'영어')
-    if check_re.findall(type):
-        name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-
-    check_re = re.compile(r'한글')
-    if check_re.findall(type):
-        name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-
-    temp = exrex.getone(name_re.pattern, 2)
+    temp = random.choice(nword)
+    name_re = re.compile(r'[0-9]{1,2}')  # 영어숫자조합 10자 이상
+    # name_re = re.compile(r'')
+    # check_re = re.compile(r'영어')
+    # if check_re.findall(type):
+    #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
+    #
+    # check_re = re.compile(r'한글')
+    # if check_re.findall(type):
+    #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
+    temp = temp + exrex.getone(name_re.pattern, 2)
+    # temp = exrex.getone(name_re.pattern, 2)
     if namesize - 5 <= len(temp) <= namesize:
         namelist.append(temp)
 
