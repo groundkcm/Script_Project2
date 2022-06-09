@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="필수 단어 포함 닉네임 생성">
+    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
     </list>
@@ -329,12 +329,24 @@
       <option name="project" value="LOCAL" />
       <updated>1654796680379</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="우회로 단어 가져오기">
+      <created>1654798744514</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1654798744514</updated>
+    </task>
+    <task id="LOCAL-00041" summary="랜덤 10개 생성">
+      <created>1654799021885</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1654799021885</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="창 구성 조정" />
-    <MESSAGE value="chromedriver 추가" />
     <MESSAGE value="게임 선택 시 해당 사이트 url 저장" />
     <MESSAGE value="닉네임 사이트에서 검색" />
     <MESSAGE value="webdriver 대신 requests 사용" />
@@ -358,6 +370,8 @@
     <MESSAGE value="단어 리스트에서 random.choice 사용하여 뽑기" />
     <MESSAGE value="여러 종류 단어 긁어오기" />
     <MESSAGE value="필수 단어 포함 닉네임 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="필수 단어 포함 닉네임 생성" />
+    <MESSAGE value="우회로 단어 가져오기" />
+    <MESSAGE value="랜덤 10개 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="랜덤 10개 생성" />
   </component>
 </project>

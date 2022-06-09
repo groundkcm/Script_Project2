@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from tkinter.ttk import *
 from bs4 import BeautifulSoup
@@ -136,7 +137,7 @@ def select_nametype(event=None):
 
 def select_namelen(event=None):
     global namesize
-    text = nametype.get()
+    text = namelen.get()
     size_re = re.compile(r'\d{1,2}')
     text = size_re.findall(text)
     namesize = int(text[len(text)-1])
@@ -155,21 +156,47 @@ def make_nickname():
     except:
         pass
     namelist = []
-    # name_re = re.compile(r'')
-    # check_re = re.compile(r'영어')
-    # if check_re.findall(type):
-    #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-    #
-    # check_re = re.compile(r'한글')
-    # if check_re.findall(type):
-    #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-    for _ in range(10):
-        temp = random.choice(nword)
-        name_re = re.compile(r'[0-9]{1,2}')  # 영어숫자조합 10자 이상
-        temp = inword + temp + exrex.getone(name_re.pattern, 2)
-        if namesize - 5 <= len(temp) <= namesize:
-            namelist.append(temp)
-
+    if type == '영어 + 숫자':
+        for _ in range(10):
+            temp = random.choice(eword)
+            name_re = re.compile(r'[0-9]{1,2}')
+            temp = inword + temp + exrex.getone(name_re.pattern, 2)
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
+    elif type == '영어':
+        for _ in range(10):
+            temp = random.choice(eword)
+            temp = inword + temp
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
+    elif type == '한글 + 숫자':
+        for _ in range(10):
+            temp = random.choice(nword)
+            name_re = re.compile(r'[0-9]{1,2}')
+            temp = inword + temp + exrex.getone(name_re.pattern, 2)
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
+    elif type == '한글':
+        for _ in range(10):
+            temp = random.choice(nword)
+            temp = inword + temp
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
+    elif type == '한글 + 영어':
+        for _ in range(10):
+            temp = random.choice(nword)
+            etemp = random.choice(eword)
+            temp = inword + temp + etemp
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
+    elif type == '한글 + 영어 + 숫자':
+        for _ in range(10):
+            temp = random.choice(nword)
+            etemp = random.choice(eword)
+            name_re = re.compile(r'[0-9]{1,2}')
+            temp = inword + temp + etemp + exrex.getone(name_re.pattern, 2)
+            if namesize - 5 <= len(temp) <= namesize:
+                namelist.append(temp)
     if find:
         result()
     else:
@@ -183,7 +210,6 @@ def find_untaken_nickname():
 
     untaken_namelist = []
     untaken_listbox.delete('0', END)
-
     for name in namelist:
         keyword = name
         seturl()
@@ -201,16 +227,15 @@ def find_untaken_nickname():
             elms = soup.find_all(class_=re.compile(r'^header__title'))
         elif game == '배틀그라운드':
             elms = soup.find_all(class_=re.compile(r'^not-found__desc'))
-        for e in elms:
-            untaken_namelist.append(name)
-            print(e.text)
-
         if not elms:
-            print('False')
-    # find = True
-    for n in range(0, len(untaken_namelist)):
-        untaken_listbox.insert(n, namelist[n])
+            print('taken')
+            continue
 
+        for e in elms:
+            print(e.text)
+            print(name)
+            untaken_listbox.insert(END, name)
+    print('-------')
 
 scrapword()
 window = Tk()
@@ -228,7 +253,7 @@ history_listbox = Listbox()
 
 
 def Main(event=None):
-    global Gameselect, nametype, main_listbox, word, main_frame, command_frame, untaken_namelist, find
+    global Gameselect, nametype, main_listbox, namelen, word, main_frame, command_frame, untaken_namelist, find
 
     find = True
     result_frame.destroy()
@@ -252,10 +277,9 @@ def Main(event=None):
     label = Label(main_frame, text="닉네임 컨셉 선택")
     label.pack(anchor="w")
     main_listbox = Listbox(main_frame, selectmode='multiple', height=5)
-    main_listbox.insert(0, '개인정보')
+    main_listbox.insert(0, '기본')
     main_listbox.insert(1, '랜덤')
-    main_listbox.insert(3, '무협')
-    main_listbox.insert(5, '사람')
+    main_listbox.insert(3, '무협(한글)')
     main_listbox.pack(fill=X, expand=True)
     main_listbox.bind('<<ListboxSelect>>', select_nameconcept)
 
@@ -276,10 +300,10 @@ def Main(event=None):
     # 닉네임 글자수 선택
     label = Label(main_frame, text="닉네임 글자 수 선택")
     label.pack(anchor="w", pady=7)
-    nametype = Combobox(main_frame, width=50, height=5, values=['5글자 이내', '5글자 ~ 10글자', '10글자 ~ 15글자'])
-    nametype.current()
-    nametype.bind('<<ComboboxSelected>>', select_namelen)
-    nametype.pack()
+    namelen = Combobox(main_frame, width=50, height=5, values=['5글자 이내', '5글자 ~ 10글자', '10글자 ~ 15글자'])
+    namelen.current()
+    namelen.bind('<<ComboboxSelected>>', select_namelen)
+    namelen.pack()
 
 
     command_frame = LabelFrame(text='Command')
