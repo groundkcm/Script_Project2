@@ -155,8 +155,6 @@ def make_nickname():
     except:
         pass
     namelist = []
-    temp = random.choice(nword)
-    name_re = re.compile(r'[0-9]{1,2}')  # 영어숫자조합 10자 이상
     # name_re = re.compile(r'')
     # check_re = re.compile(r'영어')
     # if check_re.findall(type):
@@ -165,10 +163,12 @@ def make_nickname():
     # check_re = re.compile(r'한글')
     # if check_re.findall(type):
     #     name_re = re.compile(r'[a-z]{4,5}[0-9]{1,2}')  # 영어숫자조합 10자 이상
-    temp = inword + temp + exrex.getone(name_re.pattern, 2)
-    # temp = exrex.getone(name_re.pattern, 2)
-    if namesize - 5 <= len(temp) <= namesize:
-        namelist.append(temp)
+    for _ in range(10):
+        temp = random.choice(nword)
+        name_re = re.compile(r'[0-9]{1,2}')  # 영어숫자조합 10자 이상
+        temp = inword + temp + exrex.getone(name_re.pattern, 2)
+        if namesize - 5 <= len(temp) <= namesize:
+            namelist.append(temp)
 
     if find:
         result()
