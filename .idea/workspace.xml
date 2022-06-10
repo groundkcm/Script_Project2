@@ -364,11 +364,17 @@
       <option name="project" value="LOCAL" />
       <updated>1654846238673</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="단어 파일 입출력 구현">
+      <created>1654848133777</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1654848133777</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="닉네임 사용가능 검색추가" />
     <MESSAGE value="돌아가기 버튼 생성" />
     <MESSAGE value="untaken 닉네임 업데이트" />
     <MESSAGE value="재검색 시 untaken 리스트 초기화" />
@@ -393,6 +399,7 @@
     <MESSAGE value="영어 한글 선택생성" />
     <MESSAGE value="컨셉 선택 생성" />
     <MESSAGE value="닉네임 선택 시 오류해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="닉네임 선택 시 오류해결" />
+    <MESSAGE value="단어 파일 입출력 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="단어 파일 입출력 구현" />
   </component>
 </project>

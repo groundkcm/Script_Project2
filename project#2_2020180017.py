@@ -202,9 +202,8 @@ def make_nickname():
 
 
 def find_untaken_nickname():
-    global keyword, game, untaken_namelist, untaken_listbox, url
-
-    untaken_namelist = []
+    global keyword, game, untaken_listbox, url
+    emptyname = True
     untaken_listbox.delete('0', END)
     for name in namelist:
         keyword = name
@@ -226,12 +225,14 @@ def find_untaken_nickname():
         if not elms:
             print('taken')
             continue
-
+        emptyname = False
         for e in elms:
             print(e.text)
             print(name)
             untaken_listbox.insert(END, name)
     print('-------')
+    if emptyname:
+        untaken_listbox.insert(END, 'None')
 
 # scrapword()
 with open('단어.txt', 'r', encoding='utf-8') as f:
