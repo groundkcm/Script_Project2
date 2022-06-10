@@ -113,13 +113,12 @@ def select_namelen(event=None):
 
 
 def select_nameconcept(event=None):
-    global nametuple
-    text = []
+    global nametuple, ctext
     try:
-        text = main_listbox.get(main_listbox.curselection())
+        ctext = main_listbox.get(main_listbox.curselection())
     except:
         pass
-    nametuple = text
+    nametuple = ctext
 
 
 def make_nickname():
@@ -225,6 +224,26 @@ def find_untaken_nickname():
         if not elms:
             print('taken')
             continue
+
+        if game == '메이플스토리':
+            istake = False
+            for e in elms:
+                print(e)
+                nre = re.compile(r'마지막 활동일')
+                gre = re.compile(r'길드 이름')
+                if nre.search(e.text):
+                    print('taken')
+                    istake = True
+                    break
+                elif gre.split(e.text):
+                    print(name)
+                    untaken_listbox.insert(END, name)
+                    emptyname = False
+                    istake = True
+                    break
+            if istake:
+                continue
+
         emptyname = False
         for e in elms:
             print(e.text)
@@ -279,7 +298,7 @@ def Main(event=None):
     # 게임 선택
     label = Label(main_frame, text="게임 선택")
     label.pack(anchor="w", pady=7)
-    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '메이플스토리', '마인크래프트'])
+    Gameselect = Combobox(main_frame, width=50, height=5, values=['로스트아크', 'LoL', '배틀그라운드', '메이플스토리'])
     Gameselect.current()
     Gameselect.bind('<<ComboboxSelected>>', select_game)
     Gameselect.pack()
@@ -290,7 +309,7 @@ def Main(event=None):
     main_listbox = Listbox(main_frame, selectmode='single', height=5)
     main_listbox.insert(0, '기본')
     main_listbox.insert(1, '랜덤')
-    main_listbox.insert(3, '무협(한글)')
+    main_listbox.insert(2, '무협(한글)')
     main_listbox.pack(fill=X, expand=True)
     main_listbox.bind('<<ListboxSelect>>', select_nameconcept)
 
