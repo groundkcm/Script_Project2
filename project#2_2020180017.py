@@ -67,6 +67,15 @@ def scrapword():
     for e in elms:
         cword.append(e.text)
 
+    with open('단어.txt', 'w', encoding='utf-8') as f:
+        for word in nword:
+            f.write(word + ' ')
+        f.write('\n')
+        for word in eword:
+            f.write(word + ' ')
+        f.write('\n')
+        for word in cword:
+            f.write(word + ' ')
     print(nword)
     print(eword)
     print(cword)
@@ -224,7 +233,22 @@ def find_untaken_nickname():
             untaken_listbox.insert(END, name)
     print('-------')
 
-scrapword()
+# scrapword()
+with open('단어.txt', 'r', encoding='utf-8') as f:
+    readwords = f.readline()
+    if readwords:
+        nword = readwords.split()
+    readwords = f.readline()
+    if readwords:
+        eword = readwords.split()
+    readwords = f.readline()
+    if readwords:
+        cword = readwords.split()
+    f.close()
+    print(nword)
+    print(eword)
+    print(cword)
+
 window = Tk()
 window.title("Name is already taken")
 window.geometry("+100+100")
