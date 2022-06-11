@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project#2_2020180017.py" beforeDir="false" afterPath="$PROJECT_DIR$/project#2_2020180017.py" afterDir="false" />
-    </list>
+    <list default="true" id="68d9b533-4559-419d-9280-51b6c8a39911" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -392,11 +389,17 @@
       <option name="project" value="LOCAL" />
       <updated>1654860121869</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="logging 메시지 변경">
+      <created>1654930570638</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1654930570638</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="import exrex" />
     <MESSAGE value="닉네임 랜덤생성 준비" />
     <MESSAGE value="닉네임 종류 추가" />
     <MESSAGE value="닉네임 컨셉 전역변수로 저장" />
@@ -421,6 +424,7 @@
     <MESSAGE value="검색 결과 없으면 None출력" />
     <MESSAGE value="메이플 오류 수정" />
     <MESSAGE value="logging 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="logging 적용" />
+    <MESSAGE value="logging 메시지 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="logging 메시지 변경" />
   </component>
 </project>
