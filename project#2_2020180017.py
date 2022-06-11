@@ -222,17 +222,18 @@ def find_untaken_nickname():
         elif game == '배틀그라운드':
             elms = soup.find_all(class_=re.compile(r'^not-found__desc'))
         if not elms:
-            logging.info('*taken*')
+            logstr = name.ljust(15) + '*taken*'.rjust(5)
+            logging.info(logstr)
             continue
 
         if game == '메이플스토리':
             istake = False
             for e in elms:
-                print(e)
                 nre = re.compile(r'마지막 활동일')
                 gre = re.compile(r'길드 이름')
                 if nre.search(e.text):
-                    logging.info('*taken*')
+                    logstr = name.ljust(15) + '*taken*'.rjust(5)
+                    logging.info(logstr)
                     istake = True
                     break
                 elif gre.split(e.text):
@@ -246,7 +247,8 @@ def find_untaken_nickname():
 
         emptyname = False
         for e in elms:
-            logging.info(name)
+            logstr = name.ljust(15) + 'Untaken'.rjust(5)
+            logging.info(logstr)
             untaken_listbox.insert(END, name)
     if emptyname:
         untaken_listbox.insert(END, 'None')
